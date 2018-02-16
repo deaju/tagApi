@@ -5,7 +5,7 @@ import cv2
 
 class MyHandler(SimpleHTTPRequestHandler):
     def do_GET(self):
-        img = cv2.imread("./Lenna.jpg")
+        img = cv2.imread("./Lenna.png")
         body = "Lenna W:{0} H:{1}".format(img.shape[1], img.shape[0]).encode("utf-8")
         self.send_response(200)
         self.send_header("Content-type", "text/html; charset=utf-8")
