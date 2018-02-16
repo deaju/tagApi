@@ -1,6 +1,5 @@
 import os,sys
 from http.server import HTTPServer, SimpleHTTPRequestHandler
-
 import cv2
 
 class MyHandler(SimpleHTTPRequestHandler):
