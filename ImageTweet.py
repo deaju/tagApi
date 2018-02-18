@@ -6,7 +6,7 @@ import json
 import os
 import sys
 import urllib
-import MeCab
+#import MeCab
 import numpy as np
 import cv2
 import datetime
@@ -15,7 +15,7 @@ class ImageTweet(Image):
     def __init__(self,tweet):
         self.pixivUrl=self.__getPixivUrl(tweet)
         self.caption=self.__getCaption(tweet)
-        self.tag = self.__getTag(self.caption)
+        self.tag = ''#self.__getTag(self.caption)
         self.mediaUrl = self.__getMediaImage(tweet)
         self.date = self.__getDate(tweet)
 

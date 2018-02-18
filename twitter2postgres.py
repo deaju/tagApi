@@ -5,7 +5,7 @@ import json
 import os
 import sys
 import urllib
-import MeCab
+#import MeCab
 from ImageTweet import ImageTweet
 from ImagePixiv import ImagePixiv
 from IllustratorPixiv import IllustratorPixiv
