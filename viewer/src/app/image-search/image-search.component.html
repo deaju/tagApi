@@ -1,8 +1,13 @@
-  <nav>
+<nav>
+    <div class="nav-wrapper">
+      <div class="brand-logo">Illust viewer</div>
+    </div>
+  </nav>
+<nav>
     <div class="nav-wrapper">
       <form>
         <div class="input-field">
-          <input id="search" type="search" [(ngModel)]="term" name="tag" (focus)="focus()" (blur)="blur()">
+          <input id="search" type="search" [(ngModel)]="term" name="tag" (focus)="focus()" (blur)="blur()" placeholder="画像を検索">
           <label class="label-icon" for="search"><i class="material-icons">search</i></label>
           <i class="material-icons">close</i>
         </div>
