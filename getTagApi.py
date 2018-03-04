@@ -10,6 +10,7 @@ import urllib
 from ImageTweet import ImageTweet
 from ImagePixiv import ImagePixiv
 from IllustratorPixiv import IllustratorPixiv
+from Oauth import Oauth
 
 app = Flask(__name__)
 app.config['JSON_AS_ASCII'] = False
@@ -67,5 +68,17 @@ def getImageTagFromJson():
     illustrator = IllustratorPixiv(imageTweet.getUrl)
     return jsonify(illustrator.searchSimilarImage(imageTweet.getImage(0),imageTweet.date,7))
 
+@app.route('/get_accesstoken', methods=['GET'])
+def getAccessToken():
+    oauthToken = request.args.get('oauth_token')
+    oauthVerifier = request.args.get('oauth_verifier')
+    print(oauthToken)
+    if not oauthToken == None  and not oauthVerifier == None:
+        oauth = Oauth()
+        return oauth.getAccessToken(oauthToken,oauthVerifier)
+    else:
+        oauth = Oauth()
+        return oauth.getOauthToken()
+        
 if __name__ == '__main__':
     app.run(debug=True)
