@@ -8,18 +8,27 @@ import { ImageListComponent } from './image-list/image-list.component';
 import { ImageSearchComponent } from './image-search/image-search.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterializeModule } from 'angular2-materialize';
-
+import {HttpModule} from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
+import { ImageComponent } from './image/image.component';
+import {ImageService} from './image.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     ImageListComponent,
-    ImageSearchComponent
+    ImageSearchComponent,
+    ImageComponent
   ],
   imports: [
-    BrowserModule, Ng2SearchPipeModule, FormsModule, MaterializeModule,
+    BrowserModule,
+    Ng2SearchPipeModule, 
+    FormsModule, 
+    MaterializeModule,
+    HttpModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [ImageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

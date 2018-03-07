@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ImageService } from '../image.service';
 
 @Component({
-  providers : [ImageService],
   selector: 'app-image-search',
   templateUrl: './image-search.component.html',
   styleUrls: ['./image-search.component.css']
