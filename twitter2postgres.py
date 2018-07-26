@@ -6,9 +6,9 @@ import os
 import sys
 import urllib
 #import MeCab
-from ImageTweet import ImageTweet
-from ImagePixiv import ImagePixiv
-from IllustratorPixiv import IllustratorPixiv
+#from ImageTweet import ImageTweet
+#from ImagePixiv import ImagePixiv
+#from IllustratorPixiv import IllustratorPixiv
 
 if sys.version_info >= (3, 0):
     import imp

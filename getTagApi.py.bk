@@ -1,10 +1,10 @@
 # -*- coding:utf-8 -*-
-import sys
-sys.path.append('./backend')
+
 from flask import Flask, jsonify, request
 from requests_oauthlib import OAuth1Session
 import json
 import os
+import sys
 import urllib
 #import MeCab
 from ImageTweet import ImageTweet
@@ -12,7 +12,7 @@ from ImagePixiv import ImagePixiv
 from IllustratorPixiv import IllustratorPixiv
 from Oauth import Oauth
 
-app = Flask(__name__, static_url_path='', static_folder='./dist')
+app = Flask(__name__, static_url_path='', static_folder='./viewer/dist')
 app.config['JSON_AS_ASCII'] = False
 
 oath_key_dict = {

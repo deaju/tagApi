@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input,OnChanges } from '@angular/core';
 import { ImageService } from '../image.service';
 import { Image } from '../image-list/image-list.class';
 import { Response } from '@angular/http/src/static_response';
@@ -8,15 +8,18 @@ import { Response } from '@angular/http/src/static_response';
   templateUrl: './image-list.component.html',
   styleUrls: ['./image-list.component.css']
 })
-export class ImageListComponent implements OnInit {
-  tweets:object[];
-  constructor(private service:ImageService) { }
+export class ImageListComponent implements OnInit,OnChanges {
+  isShow:boolean;
+  @Input() searchCondition:string;
+  @Input() tweets:object[];
+  constructor() { }
 
+  ngOnChanges(){
+    this.ngOnInit();
+  }
   ngOnInit() {
-    this.tweets = [];
-    this.service.getTweet().subscribe((data)=>{
-      this.tweets = data;
-    });
+
   }
 
+  
 }

@@ -6,3 +6,6 @@
 export const environment = {
   production: false
 };
+
+export const API_ENDPOINT='http://localhost:5000';
+//export const API_ENDPOINT='https://damp-ravine-22955.herokuapp.com/';
