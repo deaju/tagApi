@@ -1,0 +1,5 @@
+<app-header></app-header>
+<app-image-list [tweets]=tweets></app-image-list>
+<div class="center-align" *ngIf="isShowButton">
+    <a class="waves-effect waves-light btn red lighten-3" (click)=addTweets()>更に読み込む</a>
+</div>

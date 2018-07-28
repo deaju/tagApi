@@ -1,4 +1,4 @@
 <div class="row">
-  <app-image *ngFor="let tweet of tweets" [tweet]="tweet">
+  <app-image *ngFor="let tweet of tweets;let i=index" [tweet]="tweet">
   </app-image>
 </div>

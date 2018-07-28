@@ -6,6 +6,8 @@ import { SafeUrl } from '@angular/platform-browser/src/security/dom_sanitization
 import { ResponseContentType } from '@angular/http/src/enums';
 import { RequestOptions } from '@angular/http/src/base_request_options';
 import 'rxjs/add/operator/map';
+import { ImageService } from '../image.service';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-image',
@@ -14,40 +16,42 @@ import 'rxjs/add/operator/map';
 })
 export class ImageComponent  {
   _tweet:object;
-  url:SafeUrl="./assets/image/noimage.png";
-  tag:{name:string}={name:'コンニチワ'};
+  url:SafeUrl="";
+  tags:{name:string}[]=[{name:""}];
+  id:string;
   title:string="";
   caption:string="";
-  constructor(private http:Http,private sanitizer: DomSanitizer){
-
+  isMulti:boolean;
+  constructor(private http:Http,private sanitizer: DomSanitizer,private service:ImageService,private auth:AuthService){
   }
   @Input()
   set tweet(tweet: object){
     this._tweet = tweet;
-    this.url = this._tweet['entities']['media'][0]['media_url_https'];
-    this.caption = this._tweet['text'];
+    this.id = this._tweet["id_str"];
+    if('media' in this._tweet['entities'] ){
+      this.url = this._tweet['entities']['media'][0]['media_url_https'];
+      this.isMulti = this._tweet['extended_entities']['media'].length > 1;
+      this.tags = this._tweet["tag"];
+      /*if(this._tweet["tag"] == undefined){
+        this.getTag(this._tweet);
+      } else {
+        this.tags = this._tweet["tag"];
+      }*/
+    }
+    this.caption = this._tweet['text'].replace(/https:.*/,"");
   }
-  getImage(url:string):undefined {
-    /*
-    let headers = new Headers({'Content-Type': 'application/x-www-form-urlencoded'});
-    let options = new RequestOptions(
-      { headers: headers,
-      responseType:ResponseContentType.Blob});
-    this.http.get(url)
-    .map(blob=>{
-      let urlCreater = window.URL;
-      return this.sanitizer.bypassSecurityTrustUrl(urlCreater.createObjectURL(blob));
-    })*/
-    /*
-    this.http.request(new Request({
-        method: "Get",
-        url: url
-      })).subscribe((res:Response)=>{
-        let bf = res.arrayBuffer();
-        let blob = new Blob([bf], {type: "image/jpeg"});
-        this.url = this.sanitizer.bypassSecurityTrustResourceUrl(window.URL.createObjectURL(blob));
-      });*/
+  getTag(tweet):undefined{
+    let data = this.auth.getCurrentToken();
+    data['tweet'] = tweet;
+    this.http.post("https://damp-ravine-22955.herokuapp.com/twitter/like",data).map((res:Response)=>{
+      return res.json();
+    })
+    .subscribe((tag:{name:string}[])=>{
+      let user = this.auth.getCurrentUser();
+      this._tweet["tag"] = tag;
+      tag.forEach((t)=>user.addTag(t.name));
+      this.tags = tag;
+    });
     return;
-}
-
+  }
 }
