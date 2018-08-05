@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { ImageService } from './image.service';
-import {User} from '../lib/user';
+import { User} from '../lib/user';
 import { Http } from '@angular/http';
 
 @Injectable()
@@ -61,6 +61,12 @@ export class AuthService {
       this.router.navigate(["/login"]);
     }
     return;
+  }
+  deleteAllTweets(){
+    this.users.forEach((user)=>{
+      user.pages=[];
+      user.tweets=[];
+    });
   }
 
 }

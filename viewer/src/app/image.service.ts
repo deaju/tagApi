@@ -12,13 +12,13 @@ import { User } from '../lib/user';
 
 @Injectable()
 export class ImageService {
-  private count:string;
+  count:string;
   tweetsChange:Observable<object[]>;
   private _observer;
   private _tagObserver;
 
   constructor(private http:Http,private auth:AuthService) { //,private socket:SocketService
-    this.count = '200';
+    this.count = localStorage.getItem('page')
     this.tweetsChange = new Observable((observer)=>{
       this._observer = observer;
     });
@@ -100,7 +100,7 @@ export class ImageService {
   }
 
   deleteTweets():undefined{
-    this._observer.next([]);
+    this.auth.deleteAllTweets()
     return;
   }
 

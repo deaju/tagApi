@@ -19,7 +19,8 @@ import { DetailComponent } from './detail/detail.component';
 import { HeaderComponent } from './header/header.component';
 import { ViewComponent } from './view/view.component';
 import { TagrankingPipe } from './tagranking.pipe';
-import { SocketService } from './socket.service'
+import { SocketService } from './socket.service';
+import { SettingComponent } from './setting/setting.component'
 
 @NgModule({
   declarations: [
@@ -31,10 +32,11 @@ import { SocketService } from './socket.service'
     DetailComponent,
     HeaderComponent,
     ViewComponent,
-    TagrankingPipe
+    TagrankingPipe,
+    SettingComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     Ng2SearchPipeModule, 
     FormsModule, 
     MaterializeModule,
@@ -65,6 +67,10 @@ import { SocketService } from './socket.service'
       {
         path: 'detail/:id',
         component: DetailComponent
+      },
+      {
+        path: 'setting',
+        component: SettingComponent
       },
     ],{useHash:true})
   ],

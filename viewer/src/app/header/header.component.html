@@ -1,6 +1,6 @@
 <nav class="white">
   <div class="nav-wrapper">
-    <a href="#" class="brand-logo red-text">EasyViewer</a>   
+    <a class="brand-logo red-text ">EasyViewer</a>   
       <ul class="right">  
           <li  *ngFor="let user of users;let i=index">
             <div *ngIf="user.current; else elseBlock"><i class="large"><img src="{{user.profUrl}}" class="z-depth-5 lime" (click)="clickIcon(i)"></i></div>
@@ -17,10 +17,11 @@
                     </div>
                   </div>
                 </div>
-              </div>          
+              </div>
           </li>
           <li><a href="{{loginURL}}"><i class="material-icons red-text">person_add</i></a></li>  
-          <li><a href="" (click)="logout()"><i class="material-icons red-text">exit_to_app</i></a></li>            
+          <li><a href="" (click)="logout()"><i class="material-icons red-text">exit_to_app</i></a></li>
+          <li><a href="#/setting"><i class="material-icons red-text">settings</i></a></li>
       </ul>
   </div>
 </nav> 
