@@ -20,7 +20,9 @@ import { HeaderComponent } from './header/header.component';
 import { ViewComponent } from './view/view.component';
 import { TagrankingPipe } from './tagranking.pipe';
 import { SocketService } from './socket.service';
-import { SettingComponent } from './setting/setting.component'
+import { SettingComponent } from './setting/setting.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment'
 
 @NgModule({
   declarations: [
@@ -72,7 +74,8 @@ import { SettingComponent } from './setting/setting.component'
         path: 'setting',
         component: SettingComponent
       },
-    ],{useHash:true})
+    ],{useHash:true}),
+    ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [ImageService,AuthService,SocketService],
   bootstrap: [AppComponent]
