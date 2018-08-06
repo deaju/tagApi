@@ -19,6 +19,9 @@ export class ImageService {
 
   constructor(private http:Http,private auth:AuthService) { //,private socket:SocketService
     this.count = localStorage.getItem('page')
+    if(this.count == null){
+      this.count = "100"
+    }
     this.tweetsChange = new Observable((observer)=>{
       this._observer = observer;
     });

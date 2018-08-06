@@ -24,7 +24,7 @@ export class SettingComponent implements OnInit {
   saveSetting(){
     let significantFigure = Number(this.page);
     console.log("save "+significantFigure)
-    if(significantFigure > 0){
+    if(significantFigure > 0 && significantFigure < 200){
       localStorage.setItem('page',String(this.page));
       this.image.count = String(this.page);
     } 

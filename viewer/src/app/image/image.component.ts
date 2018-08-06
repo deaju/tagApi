@@ -22,6 +22,7 @@ export class ImageComponent  {
   title:string="";
   caption:string="";
   isMulti:boolean;
+  isHaveMedia:boolean;
   constructor(private http:Http,private sanitizer: DomSanitizer,private service:ImageService,private auth:AuthService){
   }
   @Input()
@@ -32,11 +33,14 @@ export class ImageComponent  {
       this.url = this._tweet['entities']['media'][0]['media_url_https'];
       this.isMulti = this._tweet['extended_entities']['media'].length > 1;
       this.tags = this._tweet["tag"];
+      this.isHaveMedia=true;
       /*if(this._tweet["tag"] == undefined){
         this.getTag(this._tweet);
       } else {
         this.tags = this._tweet["tag"];
       }*/
+    } else {
+      this.isHaveMedia=false;
     }
     this.caption = this._tweet['text'].replace(/https:.*/,"");
   }
