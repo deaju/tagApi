@@ -1,5 +1,4 @@
-<div class="col s6 m3 l2" *ngIf="isHaveMedia">
-  <a href="#/detail/{{id}}">
+<div class="col s6 m3 l2" *ngIf="isHaveMedia" (click)="onTouch()">
     <div class="card hoverable">
         <div class="card-image">
           <img [src]="url">
@@ -13,5 +12,4 @@
           <span *ngFor="let tag of tags"> {{tag.name}}</span>
         </div>
       </div>
-  </a>
 </div>

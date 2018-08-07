@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { RouterModule,Routes } from '@angular/router';
 
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
@@ -24,6 +24,37 @@ import { SettingComponent } from './setting/setting.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment'
 
+const routes: Routes = [
+  {
+    path:'',
+    redirectTo:'/login',
+    pathMatch:'full'
+  },
+  {
+    path:'login',
+    component:LoginComponent,
+  },
+  {
+    path: 'search/:keyword',
+    component: ImageSearchComponent
+  },
+  {
+    path: 'search',
+    component: ImageSearchComponent
+  },
+  {
+    path: 'list',
+    component: ViewComponent
+  },
+  {
+    path: 'detail/:id',
+    component: DetailComponent
+  },
+  {
+    path: 'setting',
+    component: SettingComponent
+  },
+];
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,39 +75,10 @@ import { environment } from '../environments/environment'
     MaterializeModule,
     HttpModule,
     HttpClientModule,
-    RouterModule.forRoot([
-      {
-        path:'',
-        redirectTo:'/login',
-        pathMatch:'full'
-      },
-      {
-        path:'login',
-        component:LoginComponent,
-      },
-      {
-        path: 'search/:keyword',
-        component: ImageSearchComponent
-      },
-      {
-        path: 'search',
-        component: ImageSearchComponent
-      },
-      {
-        path: 'list',
-        component: ViewComponent
-      },
-      {
-        path: 'detail/:id',
-        component: DetailComponent
-      },
-      {
-        path: 'setting',
-        component: SettingComponent
-      },
-    ],{useHash:true}),
+    RouterModule.forRoot(routes,{useHash:true,scrollPositionRestoration: 'enabled'}),
     ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production })
   ],
+  exports: [RouterModule],
   providers: [ImageService,AuthService,SocketService],
   bootstrap: [AppComponent]
 })

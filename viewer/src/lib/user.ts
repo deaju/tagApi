@@ -10,6 +10,7 @@ export class User {
     tweets:object[];
     pages:number[];
     tags:{name:string,count:number}[];
+    scroll:number;
     constructor(storageUser:any,private http:Http){
         this.token = storageUser.oauth_token;
         this.tokenSecret = storageUser.oauth_token_secret;
@@ -19,6 +20,7 @@ export class User {
         this.tweets = [];
         this.pages = [];
         this.tags = [];
+        this.scroll = 0;
     }
     private getProfImage(){
         if(this.profUrl==null){
