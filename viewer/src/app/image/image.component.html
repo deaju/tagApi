@@ -1,0 +1,15 @@
+<div class="col s6 m3 l2" *ngIf="isHaveMedia" (click)="onTouch()">
+    <div class="card hoverable">
+        <div class="card-image">
+          <img [src]="url">
+          <span *ngIf="isMulti">・・・more</span>
+          <span class="card-title">{{title}}</span>
+        </div>
+        <div class="hide-on-med-and-down card-content black-text">
+          <p>{{caption}}</p>
+        </div>
+        <div class="hide-on-med-and-down card-action">
+          <span *ngFor="let tag of tags"> {{tag.name}}</span>
+        </div>
+      </div>
+</div>

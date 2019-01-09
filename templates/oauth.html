@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+<title>test</title>
+<body>
+
+</body>
+<script type="text/javascript">
+{% block content %}
+let token='{{token}}'.split('&amp;');
+let userInfo = JSON.parse(localStorage.getItem('info'));
+let user = setUser(token);
+console.log(user);
+if(userInfo == null){
+    localStorage.setItem('info',JSON.stringify([user]));
+} else {
+    let isContain = false;
+    for(let i=0;i < userInfo.length;i++){
+        if(userInfo[i].user_id == user.user_id){
+            isContain =true;
+        }
+    }
+    if(!isContain) {
+        userInfo.map((user)=>{
+            user['current'] = false;
+        });
+        userInfo.push(user);
+        localStorage.setItem('info',JSON.stringify(userInfo));
+    }
+}
+
+
+function setUser(token){
+    let user = {};
+    for(var i=0;token[i];i++) {
+        var kv = token[i].split('=');
+        user[kv[0]] = kv[1];
+    }
+    user['current'] = true;
+    return user;
+}
+
+//location.href='http://localhost:4200';
+{% endblock %}
+</script>
+</head>

@@ -1,0 +1,28 @@
+<div class="row">
+  <div class="col s2">
+    <div class="center-align">
+      <i class="tiny"><img src="{{profUrl}}"></i>
+    </div>
+  </div>
+  <div class="col s9">
+      <nav>
+          <div class="nav-wrapper white">
+            <form>
+              <div class="input-field">
+                <input class="black-text" id="search" type="search" [(ngModel)]="term" name="tag" (focus)="focus()" (blur)="blur()" (keyup.enter)="search(term)" placeholder="画像を検索" autofocus #searchInput>
+                <label class="label-icon" for="search"><i class="material-icons red-text">search</i></label>
+                <i class="material-icons" (click)="clear()">close</i>
+              </div>
+            </form>
+          </div>
+        </nav>
+  </div>
+  <div class="col s3"></div>
+</div>
+<div class="collection" *ngIf="isShowList">
+  <a class="collection-item" *ngFor = "let tag of tags | filter:term |tagranking:20" (click)="selectTerm(tag.name)">
+    {{tag.name}}
+  </a>
+</div>
+
+<app-image-list [tweets]=tweets></app-image-list>
